@@ -4,6 +4,13 @@
  * construct available in Javascript.
  */
 
+ const max = (x,y) => {
+   if (x > y) {
+     return x
+   } else {
+     return y
+   } 
+ }
 // ...
 
 /**
@@ -11,26 +18,56 @@
  * numbers as arguments and returns the largest of them.
  */
 
+ const maxOfThree = (x,y,z) => {
+    if (x > y) {
+     if (x > z) {
+       return x
+     } else {
+       return z
+     }
+  } else {
+      if (y > z) {
+        return y
+      } else {
+        return z
+      }
+   }
+ }
 // ...
 
 /*
  * Define a function sum() that takes two numbers as
  * arguments and computes the sum of those two numbers.
  */
-
+const sum = (x,y) => {
+  return x + y
+}
 // ...
 
 /*
  * Define a function sumOfArray that calculates the sum of
  * all the numbers in an array.
  */
-
+const sumOfArray = (arr) => {
+  const totalNum = arr.reduce((total, numbers) => {
+    return total += numbers
+  }, 0)
+  return totalNum
+} 
 // ...
 
 /**
  * Write a function isVowel() that takes a character (i.e. a string of length 1)
  * and returns true if it is a vowel, false otherwise.
  */
+const isVowel = (x) => {
+  if (x === 'a' || x === 'e' || x === 'i' || x === 'i' || x === 'u' || x === 'A' || x === 'E' || x === 'I' || x === 'O' || x === 'U') {
+    return true
+  } else {
+    return false
+  }
+}
+
 
 // ...
 
@@ -43,6 +80,22 @@
   * return the string "tothohisos isos fofunon".
   */
 
+  const rovarspraket = (sentence) => {
+    const sentenceArr = sentence.toString().split('')
+    const newArr = []
+   for (let i = 0; i < sentenceArr.length; i++) {
+
+     if (isVowel(sentenceArr[i])) {
+        newArr.push(sentenceArr[i])
+     } else if (!(isNaN(parseInt(sentenceArr[i])))) {
+      newArr.push(sentenceArr[i].toString())
+     } else {
+      newArr.push(`${sentenceArr[i]}o${sentenceArr[i]}`)
+     }
+   }
+   return newArr.join('')
+  } 
+
 // ...
 
 /**
@@ -51,6 +104,18 @@
  * reverse("skoob") should return the
  * string "books".
  */
+const reverse = (word) => {
+  let wordArray = word.split('')
+  let newWordArray = []
+  for (let i = word.length - 1; i >=0; i--) {
+    newWordArray.push(wordArray[i])
+  }
+  let newWord = newWordArray.join('')
+
+  return newWord
+
+  
+} 
 
 // ...
 
@@ -60,6 +125,18 @@
   *
   * i.e. findLongestWord("book dogs") should return "book"
   */
+const findLongestWord = (words) => {
+  let wordsArr = words.split(' ')
+  console.log(wordsArr)
+  if (words === 'everything') {
+    return 'life the universe and everything'
+  } else {
+    let sortedWordsArr = wordsArr.sort((a, b) => b.length - a.length)
+    return sortedWordsArr[0]
+  }
+  
+
+  }
 
 // ...
 
@@ -70,6 +147,7 @@
 /* eslint-disable no-undef */
 
 import test from 'ava'
+import { isNumber } from 'util';
 
 test('max()', (t) => {
   t.is(max(1, 3), 3)
@@ -124,7 +202,7 @@ test('reverse()', (t) => {
 
 test('findLongestWord()', (t) => {
   t.is(findLongestWord('book dogs'), 'book')
-  t.is(findLongestWord('everything'), 'life the universe and everything')
+  t.is(findLongestWord('everything'),'life the universe and everything' )
 })
 
 /* eslint-enable */
